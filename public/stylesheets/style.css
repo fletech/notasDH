@@ -1,0 +1,297 @@
+
+/* ================
+- IMPORTS
+================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+/* ================
+- GENERALES
+================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+
+}
+
+img {
+    height: 100%;
+}
+
+/* ================
+- HEADER
+================ */
+
+header {
+    padding: 15px 30px;
+    box-shadow: inset 0 -1px 0 0 #dadce0;
+    -webkit-box-shadow: inset 0 -1px 0 0 #dadce0;
+}
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+header nav .brand-wrapper {
+    display: flex;
+    height: 32px;
+}
+header nav .brand-wrapper .burger {
+    display: flex;
+    padding: 10px;
+    margin-right: 15px;
+}
+main {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;    
+}
+
+/* ================
+- SECCIÓN NUEVA NOTA
+================ */
+
+main section.new {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+main .new form {
+    max-width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+}
+input[name="title"]::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 700;
+}
+main .new form input[name="title"] {
+    height: 30px;
+    width: 100%;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+main .new form input[type="text"]:focus {
+    outline: none;
+    border: none
+}
+main .new form textarea {
+    display: flex;
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 14px;
+}
+main .new form textarea:focus {
+    outline: none;
+    border: none
+}
+main .new form button[type="submit"] {
+    display: inline;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+main .new form button[type="submit"]:hover {
+    background-color: rgb(248, 248, 248)
+}
+
+/* ================
+- SECCIÓN LISTA
+================ */
+main section.headings {
+
+}
+main h5{
+    margin-left: 20%;
+    padding-left: 1%;
+    color: #666;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+main .list {
+    margin: 20px 20%;
+    display: flex;
+}
+main .list .note {
+    width: 30%;
+    min-width: 70px;
+    padding: 22px 22px;
+    margin: 20px 1%;
+    position: relative;
+    margin-bottom: 1.2vh;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+}
+main .list .note:hover {
+    box-shadow: -2px 2px 2px rgba(0,0,0,0.19), 2px 2px 2px rgba(0,0,0,0.23)
+}
+main .list .note:nth-of-type(5n+1) { order: 1 }
+main .list .note:nth-of-type(5n+2) { order: 2 }
+main .list .note:nth-of-type(5n+3) { order: 3 }
+main .list .note:nth-of-type(5n+4) { order: 4 }
+main .list .note:nth-of-type(5n)   { order: 5 }
+main .list .note h2 {
+    color: rgb(58, 57, 57);
+}
+main .list .note p {
+    font-size: 14px;
+    color: #666;
+}
+
+main .list .note .edit {
+    height: 0;
+    display: flex;
+    margin-top: 20px;
+    justify-content: flex-end;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+main .list .note:hover .edit {
+    height: 20px;
+}
+
+main .list .note .edit > * {
+    margin-left: 7px
+}
+
+main .list .note .edit form > * {
+    background: none;
+    border: 0;
+}
+
+main .list .note .edit > a {
+    color: #666
+}
+
+main .list .note .edit form > button.trash {
+    color: rgb(241, 76, 76);
+    cursor: pointer;
+}
+
+main .list .note .edit form > button.fix {
+    color: #666;
+    cursor: pointer;
+    margin-left: 2px;
+    transition: color 0.3s ease-in-out;
+}
+
+main .list .note .edit form > button.fix:hover {
+    color: #fae198;
+    transition: color 0.3s ease-in-out;
+}
+
+
+
+main .list .note .edit form.unfix {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+main .list .note .edit form > button.unfix {
+    color: #fae198;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+main .list .note .edit form > button.unfix:hover {
+    color: rgb(80, 79, 79);
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+main .list .note .edit form > button.unfix:hover ::after{
+    content: 'Dejar de fijar la nota';
+    font-family: 'Roboto';
+    position: absolute;
+    top: 20px;
+    left: -75px;
+    width: 150px;
+    font-size: 14px;
+    color: rgb(247, 247, 247);
+    font-weight: 400;
+    z-index: 10;
+    background-color: rgb(77, 76, 76);
+    line-height: 2;
+    border-radius: 6px;
+}
+
+
+/* ================
+- SECCIÓN EDITAR
+================ */
+
+main .editForm {
+    margin: 0 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .editForm h1 {
+    font-size: 36px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+main .editForm form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .editForm form div {
+    display: flex;
+    flex-direction: column;
+}
+
+main .editForm form div > * {
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+main .editForm form div input,
+main .editForm form div textarea {
+    background: #fdfdfd;
+    padding: 5px;
+    border: solid 1px #ececec;
+}
+
+main .editForm form > input[type="text"] {
+    font-size: 18px;
+}
+
+main .editForm form > button {
+    margin-top: 10px;
+    border: none;
+    background: #3181fa;
+    color: white;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+

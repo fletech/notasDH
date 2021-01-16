@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notitas</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="brand-wrapper">
+                <div class="logo">
+                    <a href="/">
+                    <img src="images/logo.svg" alt="">
+                    </a>
+                </div>
+            </div>        
+        </nav>
+    </header>
+
+    <main>
+        <section class="new">
+            <form action="" method="POST">
+                <input type="text" name="title" placeholder="Título">
+                <textarea name="nota" id="" cols="30" placeholder="Añade una nota..."></textarea>
+                <button type="submit">Crear</button>
+            </form>
+        </section>
+
+        <section class="headings">
+            <h5>FIJADAS</h5>
+        </section>
+        
+        <section class="list">
+
+                <% for( let i = 0; i < resultado.length; i++ ) { %>
+
+                <%if (resultado[i].pin == 1) { %>
+                <div class="note">
+
+                    
+
+                    <h2><%= resultado[i].titulo %> </h2>
+                    <p><%= resultado[i].nota %></p>
+                    
+                    <div class="edit">
+                        
+                        <form method="POST" action="/?_method=PUT" class="unfix">
+                            <input type="text" name="id" value="<%=resultado[i].id%>" hidden>
+                            <input type="text" name="pin" value="<%=resultado[i].pin%>" hidden>
+                            <button type="submit" class="unfix"><i class="fas fa-thumbtack"></i></button>
+                        </form>
+
+                        <a href="/notas/<%= resultado[i].id %> "><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="/?_method=DELETE">
+                            <input type="text" name="id" value="<%=resultado[i].id%>" hidden>
+                            <button type="submit" class="trash"><i class="far fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+                
+        </section>
+
+        <section class="headings">
+            <h5>OTRAS</h5>
+        </section>
+
+        <section class="list listOther">
+
+            <% for( let i = 0; i < resultado.length; i++ ) { %>
+                <%if (resultado[i].pin == 0) { %>
+                <div class="note">
+                    <h2><%= resultado[i].titulo %> </h2>
+                    <p><%= resultado[i].nota %></p>
+
+                    <div class="edit">
+                        <a href="/notas/<%= resultado[i].id %> "><i class="fas fa-edit"></i></a>
+
+                        <form method="POST" action="/?_method=DELETE">
+                            <input type="text" name="id" value="<%=resultado[i].id%>" hidden>
+                            <button type="submit" class="trash"><i class="far fa-trash-alt"></i></button>
+                        </form>
+
+                        <form method="POST" action="/?_method=PUT">
+                            <input type="text" name="id" value="<%=resultado[i].id%>" hidden>
+                            <input type="text" name="pin" value="<%=resultado[i].pin%>" hidden>
+                            <button type="submit" class="fix"><i class="fas fa-thumbtack"></i></button>
+                        </form>
+                        
+                    </div>
+                </div>
+            <% } %>
+            <% } %>
+            
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            var elem = document.querySelector('.list');
+            var msnry = new Masonry( elem, {
+                itemSelector: '.note'
+            });
+        });
+
+        window.addEventListener('load', function() {
+            var elem = document.querySelector('.listOther');
+            var msnry = new Masonry( elem, {
+                itemSelector: '.note'
+            });
+        })
+    </script>
+</body>
+</html>
